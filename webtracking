@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="sapCpRuntime" lang="es">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link type="text/css" rel="stylesheet" href="./sapContentPage.css">
+      <script src="./sapContentPage.js"></script>
+	  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134526021-1"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+ ga('create', {
+ trackingId: 'UA-134526021-1',
+ cookieDomain: 'auto',
+ name: 'myTracker',
+ userId:'134526021'
+})
+//ga('create', 'UA-134526021-1', 'auto', 'myTracker');
+ga('create', 'UA-134526021-1', {
+  'clientId': ''
+});
+/*
+ga(function() {
+  console.log(ga.getByName('t0'));
+});
+*/
+/*
+ga(function(myTracker) {
+    cookie_id = myTracker.get('clientId');
+    ga('send','pageview',cookie_id);
+    
+});
+/*
+//ga('send','pageview',clientId);
+//console.log(cookie_id);
+/*
+ga(function(){
+  try{
+    var tracker = ga.getAll();
+    
+    a = tracker.get('clientId');
+    console.log(a);
+  }
+  catch(e){
+    return false;
+  }
+});
+*/
+ 
+ /*
+ var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
+
+if (window.localStorage) {
+  ga('create', 'UA-134526021-1', {
+    'storage': 'none',
+    'clientId': localStorage.getItem(GA_LOCAL_STORAGE_KEY)
+  });
+  ga(function(tracker) {
+    localStorage.setItem(GA_LOCAL_STORAGE_KEY, tracker.get('clientId'));
+  });
+}
+else {
+  ga('create', 'UA-134526021-1', 'auto');
+}
+console.log(Object.values(GA_LOCAL_STORAGE_KEY));
+*/
+
+
+//ga('create', 'UA-134526021-1', 'auto',{userId: USER_ID});
+//ga('set', 'userId', USER_ID);
+// Setting the userId doesn't send data to Google Analytics.
+// You must also use a pageview or event to send the data.
+//ga('send', 'event', 'authentication', 'user-id available');
+//console.log(Cookies.set('test', '123'));
+//cookie_idCookies.get();
+var date = new Date();
+var timestamp = date.getTime()
+var id = '999';
+var InteractionContactOrigin ='EMAIL' ;
+var InteractionType ='SHOP_ITEM_VIEW';
+var Source ='WEB';
+
+/*
+	var getParams = function (url) {
+	var params = {};
+	var parser = document.createElement('a');
+	parser.href = url;
+	var query = parser.search.substring(1);
+	//console.log(query);
+	if(query.search('key')){ // ************debe coincidir con el el valor que colocamos como nombre de parametro en la url*********
+		console.log(query);
+	}
+	var vars = query.split('&');
+	//console.log(vars);
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		//console.log(pair);
+		if(pair[0]=='key'){
+			name_l=pair[1];
+			//console.log(name_l);
+			//console.log('Hi');
+		}
+		else{
+			console.log("URL parameter not found!");
+		}
+		
+		params[pair[0]] = decodeURIComponent(pair[1]);
+	}
+		return name_l;
+};
+*/
+//var name_l = getParams(window.location.href);
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+id = getParameterByName('id');
+console.log("Identificador:"+id);
+Source = getParameterByName('IDORIGINURL');
+console.log("Fuentes:"+Source);
+//ga('send', 'pageview', {'sessionControl': 'start'})
+
+ga('set', 'dimension4',id);
+ga('set', 'dimension5',timestamp);
+ga('set', 'dimension7',Source);
+ga('set', 'dimension8',InteractionType);
+ga('set', 'dimension9',InteractionContactOrigin);
+//ga('set', 'dimension10',cookie_id);
+
+ gtag('config', 'UA-134526021-1', {
+ 'custom_map': {
+     'dimension4': 'id',
+     'dimension5': 'timestamp',
+     'dimension7': 'Source',
+     'dimension8': 'InteractionType',
+     'dimension9': 'InteractionContactOrigin',
+     'dimension10':'cookie_id'
+ }
+ });
+
+ gtag('event', 'sendP', {'id':id,
+ 						'timestamp':timestamp,
+ 						'Source':Source,
+ 						'InteractionType':InteractionType,
+ 						'InteractionContactOrigin':InteractionContactOrigin
+ 						
+ }
+ );
+function splitString(id,Source){
+  var id = id
+  var arregloID = id.split(',');
+  console.log( arregloID );
+  var fuente = Source
+  var arregloSource = fuente.split(',');
+  console.log( arregloSource );
+
+}
+
+
+ gtag('js', new Date());
+ gtag('config', 'UA-134526021-1');
+ ga('myTracker.send', 'pageview');	
+ ga('send', 'pageview', location.pathname); // Sirve para enviar la url que hay en el navegador a GA
+
+
+</script>
+<script language="javascript">
+<!--
+//document.write("<a href=\"https://index-s0019664937trial.dispatcher.hanatrial.ondemand.com/?hc_reset?hola\">");
+//document.write("Linkkk");
+//document.write("</a>");
+//-->
+</script>
+<!-- Matomo -->
+<!-- End Matomo Code -->
+      <title>Pagina de Baja de prueba para ACTIU Double In-out</title>
+   </head>
+   <body class="sapCpBody">
+      <form id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage" data-sap-cp-key="885E796C7245E303C85A70C6B06DE7E348A4FDE3" class="sapCRLPage sapCpContentPage sapCpContentPageLoading" data-sap-cp-prefill-data="true" data-sap-cp-version="11.9.8">
+         <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L" data-sap-cp-key="4B3D54F85771FF765945F5A68518503B1B22907F" class="sapCRLLayout sapCRLLayoutVertical sapCpLayout">
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-0W" data-sap-cp-key="5F9C33F34619498FA65DC080219DB122F609B7DF" class="sapCRLWidget sapCpTextWidget sapCpWidget">
+               <div class="sapCRLWidgetContentNoIndent sapCpWidgetContentNoIndent">
+                  <p style="text-align: left"><span style="font-size: 18pt"><strong><span style="font-family: &quot;helvetica&quot; , &quot;arial&quot; , sans-serif ; color: #2f2f2f">Página de Baja de <span style="color: #ff0000">Actiu</span> - <span style="color: #ed4545">TEST MKT</span></span></strong></span></p>
+               </div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-1W" data-sap-cp-key="207A09BFAA42B9FEB5A67E2559C9708855C7405B" class="sapCRLWidget sapCpTextWidget sapCpWidget">
+               <div class="sapCRLWidgetContentNoIndent sapCpWidgetContentNoIndent">
+                  <p>&nbsp;</p>
+               </div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-2W" data-sap-cp-key="0F4493F2C1F5795061C00CD70265F1568993863B" class="sapCRLWidget sapCpInputWidget sapCpWidget sapCpWidgetReadOnly">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"><label id="__label145" class="sapCpLabel" for="__input12">Email</label></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%"><input id="__input12" class="sapCpInput" type="email" disabled="disabled" maxlength="241" data-sap-cp-validationmessage="La dirección de correo electrónico debe tener al menos un @ y tener un dominio con punto &quot;.&quot;"></div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-3W" data-sap-cp-key="590D574A73FB0882F9F0BCBA95EB28E0EFE546EA" class="sapCRLWidget sapCpInputWidget sapCpWidget sapCpWidgetReadOnly">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"><label id="__label146" class="sapCpLabel" for="__input13">Nombre</label></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%"><input id="__input13" class="sapCpInput" type="text" disabled="disabled" maxlength="40"></div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-4W" data-sap-cp-key="C61DE82C557997567419E67425E28DDFBB9901D3" class="sapCRLWidget sapCpInputWidget sapCpWidget sapCpWidgetReadOnly">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"><label id="__label147" class="sapCpLabel" for="__input14">Apellido</label></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%"><input id="__input14" class="sapCpInput" type="text" disabled="disabled" maxlength="40"></div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-5W" data-sap-cp-key="EC68DE4737DE2CC0E1FD0E4DE30B2BAD8791C789" class="sapCRLWidget sapCpInputWidget sapCpWidget sapCpWidgetHidden sapCpWidgetReadOnly">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"><label id="__label148" class="sapCpLabel" for="__down16">Idioma de la persona</label></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <select id="__down16" class="sapCpDropDown" disabled="disabled">
+                     <option label=" " value="" selected="selected"> </option>
+                     <option label="Afrikáans" value="AF">Afrikáans</option>
+                     <option label="Alemán" value="DE">Alemán</option>
+                     <option label="Árabe" value="AR">Árabe</option>
+                     <option label="Búlgaro" value="BG">Búlgaro</option>
+                     <option label="Catalán" value="CA">Catalán</option>
+                     <option label="Checo" value="CS">Checo</option>
+                     <option label="Chino" value="ZH">Chino</option>
+                     <option label="Chino trad." value="ZF">Chino trad.</option>
+                     <option label="Coreano" value="KO">Coreano</option>
+                     <option label="Croata" value="HR">Croata</option>
+                     <option label="Danés" value="DA">Danés</option>
+                     <option label="Eslovaco" value="SK">Eslovaco</option>
+                     <option label="Esloveno" value="SL">Esloveno</option>
+                     <option label="Español" value="ES">Español</option>
+                     <option label="Estoniano" value="ET">Estoniano</option>
+                     <option label="Finlandés" value="FI">Finlandés</option>
+                     <option label="Francés" value="FR">Francés</option>
+                     <option label="Griego" value="EL">Griego</option>
+                     <option label="Hebreo" value="HE">Hebreo</option>
+                     <option label="Hindi" value="HI">Hindi</option>
+                     <option label="Holandés" value="NL">Holandés</option>
+                     <option label="Húngaro" value="HU">Húngaro</option>
+                     <option label="Indonesio" value="ID">Indonesio</option>
+                     <option label="Inglés" value="EN">Inglés</option>
+                     <option label="Islandés" value="IS">Islandés</option>
+                     <option label="Italiano" value="IT">Italiano</option>
+                     <option label="Japonés" value="JA">Japonés</option>
+                     <option label="Kazaj" value="KK">Kazaj</option>
+                     <option label="Letoniano" value="LV">Letoniano</option>
+                     <option label="Lituaniano" value="LT">Lituaniano</option>
+                     <option label="Malayo" value="MS">Malayo</option>
+                     <option label="Noruego" value="NO">Noruego</option>
+                     <option label="Polaco" value="PL">Polaco</option>
+                     <option label="Portugués" value="PT">Portugués</option>
+                     <option label="Reserva cliente" value="Z1">Reserva cliente</option>
+                     <option label="Rumano" value="RO">Rumano</option>
+                     <option label="Ruso" value="RU">Ruso</option>
+                     <option label="Serbio" value="SR">Serbio</option>
+                     <option label="Serbo (latino)" value="SH">Serbo (latino)</option>
+                     <option label="Sueco" value="SV">Sueco</option>
+                     <option label="Tailandés" value="TH">Tailandés</option>
+                     <option label="Turco" value="TR">Turco</option>
+                     <option label="Ucraniano" value="UK">Ucraniano</option>
+                     <option label="Vietnamita" value="VI">Vietnamita</option>
+                  </select>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-6W" data-sap-cp-key="A782060D95C103E6FDF877457931F26DB6C4A84D" class="sapCRLWidget sapCpInputWidget sapCpWidget sapCpWidgetMandatory">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"><label id="__label149" class="sapCpLabel sapCpLabelRequired">Fecha - cumpleaños</label></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__picker4" class="sapCpDatePicker">
+                     <select id="__down17" class="sapCpDatePickerDay sapCpDropDown" required="required" data-sap-cp-dropdowntype="Date-Day"></select>
+                     <select id="__down18" class="sapCpDatePickerMonth sapCpDropDown" required="required" data-sap-cp-dropdowntype="Date-Month">
+                        <option label="Enero" value="01">Enero</option>
+                        <option label="Febrero" value="02">Febrero</option>
+                        <option label="Marzo" value="03">Marzo</option>
+                        <option label="Abril" value="04">Abril</option>
+                        <option label="Mayo" value="05">Mayo</option>
+                        <option label="Junio" value="06">Junio</option>
+                        <option label="Julio" value="07">Julio</option>
+                        <option label="Agosto" value="08">Agosto</option>
+                        <option label="Septiembre" value="09">Septiembre</option>
+                        <option label="Octubre" value="10">Octubre</option>
+                        <option label="Noviembre" value="11">Noviembre</option>
+                        <option label="Diciembre" value="12">Diciembre</option>
+                     </select>
+                     <select id="__down19" class="sapCpDatePickerYear sapCpDropDown" required="required" data-sap-cp-dropdowntype="Date-Year-0-120"></select>
+                  </div>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-7W" data-sap-cp-key="133FA638945752593CE47026E7FE6D91DC0B19AE" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box51" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label150" class="sapCpLabel sapCpLabelRequiredBefore">Suscripción a lista de Newsletter</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-8W" data-sap-cp-key="45D511B9E811E936A3D3F7AA6F89F03000B2F8AC" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box52" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label151" class="sapCpLabel sapCpLabelRequiredBefore">Desubscripcion a lista de Newsletter</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-9W" data-sap-cp-key="1609526AC315B49A7F0F41DD17D052C72AF51BE3" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box53" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label152" class="sapCpLabel sapCpLabelRequiredBefore">Suscripción a la lista de prueba de Categoría de comunicación creada</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-10W" data-sap-cp-key="B4C1D0FEF3F91E60B892CB716D6475407D2DFBD3" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box54" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label153" class="sapCpLabel sapCpLabelRequiredBefore">Desubscripcion a lista de prueba de Categoría de comunicación creada</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-11W" data-sap-cp-key="A409B66A1BDF609C837D9624EC9680B2A6561AE1" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box55" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label154" class="sapCpLabel sapCpLabelRequiredBefore">Aceptar recibir comunicaciones por el canal de correos electrónicos.</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-12W" data-sap-cp-key="29EBF1DCF11CEE022C7D2014C404DB96F8E66193" class="sapCRLWidget sapCpCheckBoxWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box56" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label155" class="sapCpLabel sapCpLabelRequiredBefore">Activar Newsletter-Double</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-13W" data-sap-cp-key="7D77FB13E320F7D91FD5B19FC82B26B39B9C27E3" class="sapCRLWidget sapCpDownloadWidget sapCpWidget">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box57" class="sapCpCheckBox"><input type="checkbox"></div>
+                  <label id="__label156" class="sapCpLabel sapCpLabelRequiredBefore">Descarga de catálogo ejemplo TNK Family</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-14W" data-sap-cp-key="4356B36948F9D4A6488C803F88E4D89B142DC7C2" class="sapCRLWidget sapCpInteractionWidget sapCpWidget sapCpWidgetHidden sapCpWidgetReadOnly">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%">
+                  <div id="__box58" class="sapCpCheckBox"><input type="checkbox" disabled="disabled" checked="checked"></div>
+                  <label id="__label157" class="sapCpLabel sapCpLabelRequiredBefore">&lt;Interaction text&gt;</label>
+               </div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+            <div id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-15W" data-sap-cp-key="CEEDC283D7E6F6831F8B3B0C47ECE3DE1A4078D1" class="sapCRLWidget sapCpButtonWidget sapCpWidget" data-sap-cp-follow-up-action="02">
+               <div class="sapCRLWidgetContent sapCRLWidgetContentLeft sapCpWidgetContent sapCpWidgetContentLeft" style="width:20%"></div>
+               <div class="sapCRLWidgetContent sapCRLWidgetContentRight sapCpWidgetContent sapCpWidgetContentRight" style="padding-left:20%"><button  onclick="dataLayer.push({'event': 'prueba'});" id="__button53" class="sapCpButton" type="button">Enviar baja  Marketing</button><span id="__text322" class="sapCpButtonWidgetExtraText sapCpMissingMandatoryFieldLabel sapCpMissingMandatoryFieldText sapCpText">Rellene los campos obligatorios</span><span id="__text323" class="sapCpButtonWidgetExtraText sapCpErrorMessageText sapCpText">Se ha producido un error técnico</span><span id="__text324" class="sapCpButtonWidgetExtraText sapCpSuccessMessageLabel sapCpSuccessMessageText sapCpText">Gracias por su tiempo. Lo extrañaremos.</span><a id="__link27-application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage-0L-15W-0" class="sapCpButtonWidgetDownloadLink sapCpButtonWidgetExtraText sapCpLink" target="_blank" data-sap-cp-download-key="7D77FB13E320F7D91FD5B19FC82B26B39B9C27E3">Descarga de catálogo ejemplo TNK Family</a></div>
+               <div class="sapCRLWidgetFixContent sapCpWidgetFixContent"></div>
+            </div>
+         </div>
+      </form>
+      <a href="https://ind-s0019664937trial.dispatcher.hanatrial.ondemand.com">Pagina de Producto</a>
+      <a href="https://www.youtube.com/">External URL</a>
+   </body>
+</html>
